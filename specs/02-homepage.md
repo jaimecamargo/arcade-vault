@@ -1,6 +1,6 @@
 # SPEC 02 — Homepage de Arcade Vault
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01
 > **Date:** 2026-09-02
 > **Objective:** Portar la pantalla Home del prototipo estático en `references/templates/home-about/home.jsx` a la ruta `/`, moviendo la pantalla Biblioteca (hoy en `/`, definida en SPEC 01) a `/biblioteca`.

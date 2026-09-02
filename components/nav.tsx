@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useUser } from "@/lib/user-context";
 
-function isActive(pathname: string, name: "biblioteca" | "salon" | "auth") {
-  if (name === "biblioteca") return pathname === "/" || pathname.startsWith("/juegos");
+function isActive(pathname: string, name: "home" | "biblioteca" | "salon" | "auth") {
+  if (name === "home") return pathname === "/";
+  if (name === "biblioteca") return pathname.startsWith("/biblioteca") || pathname.startsWith("/juegos");
   if (name === "salon") return pathname === "/salon";
   return pathname === "/auth";
 }
@@ -28,7 +29,10 @@ export default function Nav() {
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={isActive(pathname, "biblioteca") ? "active" : ""}>
+          <Link href="/" className={isActive(pathname, "home") ? "active" : ""}>
+            Inicio
+          </Link>
+          <Link href="/biblioteca" className={isActive(pathname, "biblioteca") ? "active" : ""}>
             Biblioteca
           </Link>
           <Link href="/salon" className={isActive(pathname, "salon") ? "active" : ""}>
@@ -59,7 +63,10 @@ export default function Nav() {
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>
           MENÚ
         </div>
-        <Link href="/" className={isActive(pathname, "biblioteca") ? "active" : ""} onClick={close}>
+        <Link href="/" className={isActive(pathname, "home") ? "active" : ""} onClick={close}>
+          Inicio
+        </Link>
+        <Link href="/biblioteca" className={isActive(pathname, "biblioteca") ? "active" : ""} onClick={close}>
           Biblioteca
         </Link>
         <Link href="/salon" className={isActive(pathname, "salon") ? "active" : ""} onClick={close}>

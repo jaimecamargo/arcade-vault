@@ -1,18 +1,21 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CATS, GAMES } from "@/lib/data";
+import { CATS } from "@/lib/data";
+import type { GameRow } from "@/lib/supabase/types";
 import GameCard from "@/components/game-card";
 
-export default function LibraryScreen() {
+type GameWithBest = GameRow & { best: number | null };
+
+export default function LibraryScreen({ games }: { games: GameWithBest[] }) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<(typeof CATS)[number]>("TODOS");
 
   const filtered = useMemo(() => {
-    return GAMES.filter(
+    return games.filter(
       (g) => (cat === "TODOS" || g.cat === cat) && g.title.toLowerCase().includes(q.toLowerCase())
     );
-  }, [q, cat]);
+  }, [games, q, cat]);
 
   return (
     <div className="fade-in">

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { GAMES } from "@/lib/data";
 import { useUser } from "@/lib/user-context";
 import { saveScore } from "@/lib/scores";
+import { GAME_REGISTRY } from "@/components/games/registry";
 
 export default function GamePlayerPage() {
   const { id } = useParams<{ id: string }>();
@@ -19,9 +20,12 @@ export default function GamePlayerPage() {
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.name : "INVITADO");
   const [saved, setSaved] = useState(false);
+  const [playCount, setPlayCount] = useState(0);
+
+  const RealGame = game ? GAME_REGISTRY[game.id] : undefined;
 
   useEffect(() => {
-    if (over || paused) return;
+    if (over || paused || RealGame) return;
     const t = setInterval(() => {
       setScore((s) => {
         const next = s + Math.floor(10 + Math.random() * 90);
@@ -30,7 +34,7 @@ export default function GamePlayerPage() {
       });
     }, 220);
     return () => clearInterval(t);
-  }, [over, paused]);
+  }, [over, paused, RealGame]);
 
   if (!game) notFound();
 
@@ -42,6 +46,7 @@ export default function GamePlayerPage() {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    setPlayCount((c) => c + 1);
   };
 
   return (
@@ -82,13 +87,24 @@ export default function GamePlayerPage() {
 
       <div className="crt">
         <div className="crt-screen">
-          <div className="game-arena">
-            <div className="grid-floor"></div>
-            <div className="enemy e1"></div>
-            <div className="enemy e2"></div>
-            <div className="enemy e3"></div>
-            <div className="player-ship"></div>
-          </div>
+          {RealGame ? (
+            <RealGame
+              key={playCount}
+              paused={paused || over}
+              onScore={setScore}
+              onLives={setLives}
+              onLevel={setLevel}
+              onGameOver={endGame}
+            />
+          ) : (
+            <div className="game-arena">
+              <div className="grid-floor"></div>
+              <div className="enemy e1"></div>
+              <div className="enemy e2"></div>
+              <div className="enemy e3"></div>
+              <div className="player-ship"></div>
+            </div>
+          )}
           {paused && (
             <div className="crt-content" style={{ background: "rgba(0,0,0,0.6)", zIndex: 5 }}>
               <div>

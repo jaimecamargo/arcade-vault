@@ -104,6 +104,17 @@ export const GAMES: Game[] = [
     best: 24,
     plays: "4.2K",
   },
+  {
+    id: "asteroids",
+    title: "ASTEROIDS",
+    short: "Dispara y esquiva una lluvia interminable de rocas espaciales.",
+    long: "Pilota una nave triangular a la deriva en el vacío absoluto. Rota, propulsa y dispara para pulverizar asteroides que se fragmentan en trozos cada vez más pequeños; recoge el power-up de disparo triple y sobrevive tantos niveles como puedas.",
+    cat: "SHOOTER",
+    cover: "cover-asteroids",
+    color: "cyan",
+    best: 38700,
+    plays: "9.8K",
+  },
 ];
 
 export const CATS = ["TODOS", "ARCADE", "PUZZLE", "SHOOTER", "VERSUS"] as const;

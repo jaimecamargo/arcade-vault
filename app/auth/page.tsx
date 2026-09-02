@@ -15,7 +15,7 @@ export default function AuthPage() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     login({ name: (username || "PLAYER1").toUpperCase().slice(0, 10) });
-    router.push("/");
+    router.push("/biblioteca");
   };
 
   return (
@@ -64,7 +64,7 @@ export default function AuthPage() {
           style={{ width: "100%", marginTop: 10 }}
           onClick={() => {
             login(null);
-            router.push("/");
+            router.push("/biblioteca");
           }}
         >
           JUGAR COMO INVITADO

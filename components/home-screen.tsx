@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { GAMES, type Game } from "@/lib/data";
+import type { GameRow } from "@/lib/supabase/types";
 
 function useReveal() {
   useEffect(() => {
@@ -120,7 +120,7 @@ function FloatingSilhouettes() {
   );
 }
 
-function MiniCard({ game, onClick }: { game: Game; onClick: () => void }) {
+function MiniCard({ game, onClick }: { game: GameRow; onClick: () => void }) {
   return (
     <div className="mini-card" onClick={onClick}>
       <div className="mini-cover">
@@ -246,7 +246,7 @@ const STATS = [
   { n: "GLOBAL", u: "RANKING", s: "COMPITE CON EL MUNDO" },
 ] as const;
 
-export default function HomeScreen() {
+export default function HomeScreen({ games }: { games: GameRow[] }) {
   const router = useRouter();
   useReveal();
 
@@ -310,7 +310,7 @@ export default function HomeScreen() {
           <div className="section-rule"></div>
         </div>
         <div className="mini-rail">
-          {GAMES.slice(0, 6).map((g) => (
+          {games.slice(0, 6).map((g) => (
             <MiniCard key={g.id} game={g} onClick={() => router.push(`/juegos/${g.id}`)} />
           ))}
         </div>

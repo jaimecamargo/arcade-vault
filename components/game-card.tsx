@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
-import type { Game } from "@/lib/data";
+import type { GameRow } from "@/lib/supabase/types";
 
-export default function GameCard({ game }: { game: Game }) {
+type GameWithBest = GameRow & { best: number | null };
+
+export default function GameCard({ game }: { game: GameWithBest }) {
   const router = useRouter();
   const tiltRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +45,7 @@ export default function GameCard({ game }: { game: Game }) {
         <div className="row">
           <div className="score-badge">
             <span>MEJOR PUNTUACIÓN</span>
-            <b>{game.best.toLocaleString("es-ES")}</b>
+            <b>{game.best !== null ? game.best.toLocaleString("es-ES") : "—"}</b>
           </div>
           <button
             className={"btn " + (game.color === "magenta" ? "magenta" : game.color === "yellow" ? "yellow" : "")}

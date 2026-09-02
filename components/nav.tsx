@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useUser } from "@/lib/user-context";
 
-function isActive(pathname: string, name: "home" | "biblioteca" | "salon" | "auth") {
+function isActive(pathname: string, name: "home" | "biblioteca" | "salon" | "acerca-de" | "auth") {
   if (name === "home") return pathname === "/";
   if (name === "biblioteca") return pathname.startsWith("/biblioteca") || pathname.startsWith("/juegos");
   if (name === "salon") return pathname === "/salon";
+  if (name === "acerca-de") return pathname === "/acerca-de";
   return pathname === "/auth";
 }
 
@@ -37,6 +38,9 @@ export default function Nav() {
           </Link>
           <Link href="/salon" className={isActive(pathname, "salon") ? "active" : ""}>
             Salón de la Fama
+          </Link>
+          <Link href="/acerca-de" className={isActive(pathname, "acerca-de") ? "active" : ""}>
+            Acerca de
           </Link>
         </div>
         <div className="spacer" />
@@ -71,6 +75,9 @@ export default function Nav() {
         </Link>
         <Link href="/salon" className={isActive(pathname, "salon") ? "active" : ""} onClick={close}>
           Salón de la Fama
+        </Link>
+        <Link href="/acerca-de" className={isActive(pathname, "acerca-de") ? "active" : ""} onClick={close}>
+          Acerca de
         </Link>
         <Link href="/auth" className={isActive(pathname, "auth") ? "active" : ""} onClick={close}>
           {user ? "Cuenta" : "Iniciar Sesión"}

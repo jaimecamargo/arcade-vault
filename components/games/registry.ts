@@ -4,10 +4,12 @@
 
 import type { ComponentType } from "react";
 import type { GamePlayerProps } from "./types";
+import ArkanoidCanvas from "./arkanoid/ArkanoidCanvas";
 import AsteroidsCanvas from "./asteroids/AsteroidsCanvas";
 import TetrisCanvas from "./tetris/TetrisCanvas";
 
 export const GAME_REGISTRY: Record<string, ComponentType<GamePlayerProps>> = {
+  arkanoid: ArkanoidCanvas,
   asteroids: AsteroidsCanvas,
   tetris: TetrisCanvas,
 };

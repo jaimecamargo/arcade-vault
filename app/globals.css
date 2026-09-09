@@ -594,6 +594,27 @@ a { color: inherit; text-decoration: none; }
   filter: drop-shadow(0 0 10px rgba(255,0,110,0.7));
 }
 
+.cover-vibora { background: radial-gradient(circle at 28% 84%, #0f3320 0%, #040f08 70%); }
+.cover-vibora::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,255,136,0.08) 0 1px, transparent 1px 12.5%),
+    repeating-linear-gradient(0deg, rgba(0,255,136,0.08) 0 1px, transparent 1px 16.666%);
+}
+.cover-vibora::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 74% 26%, #ff5a36 0 5px, transparent 6px),
+    linear-gradient(var(--green),var(--green)) 30% 60%/12% 12% no-repeat,
+    linear-gradient(var(--green),var(--green)) 30% 48%/12% 12% no-repeat,
+    linear-gradient(var(--green),var(--green)) 30% 36%/12% 12% no-repeat,
+    linear-gradient(var(--green),var(--green)) 42% 36%/12% 12% no-repeat,
+    linear-gradient(#d6fff0,#d6fff0) 54% 36%/12% 12% no-repeat;
+  filter: drop-shadow(0 0 8px rgba(0,255,136,0.55));
+}
+
 /* ===== detail screen ===== */
 .av-detail {
   display: grid;

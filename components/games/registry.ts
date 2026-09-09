@@ -7,9 +7,11 @@ import type { GamePlayerProps } from "./types";
 import ArkanoidCanvas from "./arkanoid/ArkanoidCanvas";
 import AsteroidsCanvas from "./asteroids/AsteroidsCanvas";
 import TetrisCanvas from "./tetris/TetrisCanvas";
+import ViboraCanvas from "./vibora/ViboraCanvas";
 
 export const GAME_REGISTRY: Record<string, ComponentType<GamePlayerProps>> = {
   arkanoid: ArkanoidCanvas,
   asteroids: AsteroidsCanvas,
   tetris: TetrisCanvas,
+  vibora: ViboraCanvas,
 };
